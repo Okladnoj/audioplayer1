@@ -185,6 +185,32 @@ class _MyPlaerState extends State<MyPlaer> {
                       ),
                     ),
                   ),
+                  Expanded(
+                    child: Container(
+                      child: InkWell(
+                        onTap: () {
+                          audioPlayer.setVolume(0.4);
+                        },
+                        child: Icon(
+                          Icons.volume_down,
+                          size: sizeIcon,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: InkWell(
+                        onTap: () {
+                          audioPlayer.setVolume(1);
+                        },
+                        child: Icon(
+                          Icons.volume_up,
+                          size: sizeIcon,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
