@@ -1,6 +1,6 @@
 import 'package:audioplayer1/res/const.dart';
 import 'package:flutter/material.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:just_audio/just_audio.dart';
 
 class MyPlaer extends StatefulWidget {
   final String _urlRadio;
@@ -12,7 +12,7 @@ class MyPlaer extends StatefulWidget {
 
 class _MyPlaerState extends State<MyPlaer> {
   final String _urlRadio;
-  AssetsAudioPlayer audioPlayer;
+  AudioPlayer audioPlayer;
   PlayerState _playerState = PlayerState.stopped;
   Stopwatch _stopwatch;
   List<Text> _listTimerText;
@@ -24,7 +24,7 @@ class _MyPlaerState extends State<MyPlaer> {
   @override
   void initState() {
     super.initState();
-    audioPlayer = AssetsAudioPlayer();
+    audioPlayer = AudioPlayer();
     _playerState = PlayerState.stopped;
     _stopwatch = Stopwatch();
     _listTimerText = [Text('Пусто')];
@@ -47,10 +47,9 @@ class _MyPlaerState extends State<MyPlaer> {
       });
 
       try {
-        await audioPlayer.open(
-          Audio.network(_urlRadio),
-        );
+        await audioPlayer.setUrl(_urlRadio);
         setState(() {
+          audioPlayer.play();
           _stopwatch.start();
           _listTimerText.clear();
           _listTimerText.add(Text('Воспроизведенo'));
@@ -189,7 +188,7 @@ class _MyPlaerState extends State<MyPlaer> {
                     child: Container(
                       child: InkWell(
                         onTap: () {
-                          audioPlayer.setVolume(0.4);
+                          audioPlayer.setVolume(0.1);
                         },
                         child: Icon(
                           Icons.volume_down,
