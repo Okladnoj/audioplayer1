@@ -28,6 +28,12 @@ class _MyPlaerState extends State<MyPlaer> {
     _playerState = PlayerState.stopped;
     _stopwatch = Stopwatch();
     _listTimerText = [Text('Пусто')];
+    audioPlayer.icyMetadataStream.listen((event) {
+      setState(() {
+        _listTimerText.clear();
+        _listTimerText.add(Text('${event.info.title}'));
+      });
+    });
   }
 
   @override
